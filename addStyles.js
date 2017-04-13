@@ -16,7 +16,11 @@ var stylesInDom = {},
 		// Tests for existence of standard globals is to allow style-loader 
 		// to operate correctly into non-standard environments
 		// @see https://github.com/webpack-contrib/style-loader/issues/177
-		return window && document && document.all && !window.atob;
+		try {
+      return window && document && document.all && !window.atob;
+    } catch(e) {
+      return false;
+    }
 	}),
 	getElement = (function(fn) {
 		var memo = {};
